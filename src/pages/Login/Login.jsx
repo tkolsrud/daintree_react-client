@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { Link } from 'react-router-dom' 
 // Components
 import LoginForm from '../../components/LoginForm/LoginForm'
 
@@ -18,6 +18,9 @@ function Login({ handleSignupOrLogin }){
                     updateMessage={updateMessage}
                     handleSignupOrLogin={handleSignupOrLogin}
                 />
+            </section>
+            <section>
+                <p>New user? <Link to="/signup">Sign up here!</Link></p>
             </section>
         </main>
     )
