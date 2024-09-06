@@ -3,7 +3,7 @@ import { useState } from 'react'
 // Components
 import LoginForm from '../../components/LoginForm/LoginForm'
 
-const Login = ({ handleSignupOrLogin }) => {
+function Login({ handleSignupOrLogin }){
     const [message, setMessage] =useState([''])
 
     const updateMessage = msg => {
