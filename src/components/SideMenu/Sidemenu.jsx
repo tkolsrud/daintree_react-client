@@ -1,4 +1,6 @@
 import Offcanvas from 'react-bootstrap/Offcanvas'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './Sidemenu.css'
 
 function Sidemenu({ categoryList, show, handleClose }){
     return (

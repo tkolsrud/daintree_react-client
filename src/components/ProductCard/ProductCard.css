@@ -1,0 +1,14 @@
+.container {
+    outline: solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.thumbnail {
+    max-height: 10em;
+}
+
+.product-title {
+    font-size: 10em;
+}
