@@ -1,0 +1,2 @@
+- Login button on navbar should be a dropdown that offers "Login", "Signup" or sign in with Oauth options.
+    - Login page should also offer link to Signup and Oauth options

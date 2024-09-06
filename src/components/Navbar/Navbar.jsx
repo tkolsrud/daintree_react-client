@@ -17,7 +17,7 @@ function Navbar(){
     }, [])
 
     const categoryList = categories.map((category, idx) => {
-        return <li key={idx}>{category.name}</li>
+        return <li key={idx}><div>{category.name}</div></li>
     })
 
     const handleClose = () => setShow(false)
