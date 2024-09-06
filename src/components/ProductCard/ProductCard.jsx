@@ -1,6 +1,9 @@
-function ProductCard(){
+function ProductCard({ product }){
     return (
-        <h2>ProductCard</h2>
+        <div>
+            <h2>{product.title}</h2>
+            <p>{product.brand}</p>
+        </div>
     )
 }
 

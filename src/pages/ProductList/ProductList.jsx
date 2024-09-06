@@ -8,7 +8,7 @@ function ProductList(){
 
     useEffect(() => {
         const fetchProducts = async () => {
-            const apiResponse = await dummyJSONService.index()
+            const apiResponse = await dummyJSONService.fetchAllProducts()
             setProducts(apiResponse)
         }
         fetchProducts()
@@ -18,13 +18,12 @@ function ProductList(){
         return <ProductCard product={product} key={product.id} />
     })
 
+    if (!productList) <h2>Loading...</h2>
     return (
         <main>
             <h1>Product List</h1>
             {productList}
         </main>
-
-
     )
 }
 
