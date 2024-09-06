@@ -1,6 +1,23 @@
-function Signup(){
+import { useState } from 'react'
+import SignupForm from '../../components/SignupForm/SignupForm'
+
+function Signup({ handleSignupOrLogin }){
+    const [message, setMessage] = useState([''])
+
+    const updateMessage = (msg) => {
+        setMessage(msg)
+    }
+
     return (
-        <h1>Signup Modal</h1>
+        <main>
+            <section>
+                <SignupForm
+                    message={message}
+                    updateMessage={updateMessage}
+                    handleSignupOrLogin={handleSignupOrLogin}
+                />
+            </section>
+        </main>
     )
 }
 

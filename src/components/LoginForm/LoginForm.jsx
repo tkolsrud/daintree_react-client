@@ -10,12 +10,12 @@ const LoginForm = ({ message, updateMessage, handleSignupOrLogin }) => {
     })
     const navigate = useNavigate()
 
-    const handleChange = e => {
+    const handleChange = (e) => {
         updateMessage('')
         setFormData({ ...formData, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = async e => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         try {
             await authService.login(formData)

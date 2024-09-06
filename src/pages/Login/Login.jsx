@@ -6,7 +6,7 @@ import LoginForm from '../../components/LoginForm/LoginForm'
 function Login({ handleSignupOrLogin }){
     const [message, setMessage] =useState([''])
 
-    const updateMessage = msg => {
+    const updateMessage = (msg) => {
         setMessage(msg)
     }
 
