@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate } from 'react-router-dom'
 // Components
 import Login from './pages/Login/Login'
 import Signup from './pages/Signup/Signup'
-import ProductList from './pages/ProductList/ProductList'
+import ProductList from './components/ProductList/ProductList'
 import ProductDetail from './pages/ProductDetail/ProductDetail'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './pages/Profile/Profile'

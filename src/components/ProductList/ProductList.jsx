@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
-import ProductCard from '../../components/ProductCard/ProductCard'
+import ProductCard from '../ProductCard/ProductCard'
 
 import * as dummyJSONService from '../../services/dummyJSONService'
+
+import styles from './ProductList.module.css'
 
 function ProductList(){
     const [products, setProducts] = useState([])
@@ -20,8 +22,7 @@ function ProductList(){
 
     if (!productList) <h2>Loading...</h2>
     return (
-        <main>
-            <h1>Product List</h1>
+        <main className={styles.container}>
             {productList}
         </main>
     )

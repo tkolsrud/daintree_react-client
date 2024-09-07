@@ -1,17 +1,19 @@
-import './ProductCard.css'
+import styles from './ProductCard.module.css'
 
 function ProductCard({ product }){
     return (
-        <div className='product-card-container'>
+        <div className={styles.container}>
             <div>
-                <img className='thumbnail' src={product.thumbnail} alt={product.title} />
+                <img className={styles.thumbnail} src={product.thumbnail} alt={product.title} />
             </div>
-            <div>
-                <p className='product-title'>{product.title}</p>
+            <div className={styles.product_title_container}>
+                <p className={styles.product_title}>{product.title}</p>
             </div>
-            <p>{product.brand}</p>
-            <p>${product.price}</p>
-            <p>Rating: </p>
+            <div className={styles.product_info}>
+                <p>{product.brand}</p>
+                <p>${product.price}</p>
+                <p>Rating: </p>
+            </div>
         </div>
     )
 }
