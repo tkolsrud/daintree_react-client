@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import Star from '../Star/Star'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStarHalfStroke } from '@fortawesome/free-solid-svg-icons'
 import styles from './ProductCard.module.css'
+import HalfStar from '../HalfStar/HalfStar'
 
 
 
@@ -35,9 +34,13 @@ function ProductCard({ product, stars, setStars }){
             </div>
             <div className={styles.product_info}>
                 <ul>
-                    <li>{product.brand}</li>
+                    {product.brand ? (
+                        <li>{product.brand}</li>
+                    ) : (
+                        <li>Daintree Fresh</li>
+                    )}
                     <li>${product.price}</li>
-                    <li>{starRating}<FontAwesomeIcon icon={faStarHalfStroke}/> ({product.rating})
+                    <li>{starRating}<HalfStar /> ({product.rating})
                     </li>
                 </ul>
             </div>    
