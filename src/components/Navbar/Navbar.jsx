@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import Sidemenu from '../SideMenu/Sidemenu'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 import * as dummyJSONService from '../../services/dummyJSONService'
+
+import styles from './Navbar.module.css'
 
 function Navbar(){
     const [categories, setCategories] = useState([])
@@ -24,12 +28,16 @@ function Navbar(){
     const handleShow = () => setShow(true)
 
     return (
-        <>
-        <button onClick={handleShow}>Departments</button>
-        <Sidemenu categoryList={categoryList} show={show} handleClose={handleClose} />
-        <h1><NavLink to='/'>Daintree</NavLink></h1>
-        <p><NavLink to='/login'>Login</NavLink></p>
-        </>
+        <div className={styles.navbar}>
+            <section className={styles.navbar_left}>
+                <NavLink to='/'><img src="../../../public/nature.png" alt="daintree logo" className={styles.logo} /></NavLink>
+                <FontAwesomeIcon icon={faBars} onClick={handleShow} className={styles.bars} />
+                <Sidemenu categoryList={categoryList} show={show} handleClose={handleClose} />
+            </section>
+            <section className={styles.navbar_right}>
+                <p><NavLink to='/login'>Login</NavLink></p>
+            </section>
+        </div>
     )
 }
 

@@ -24,7 +24,9 @@ function ProductList(){
 
     return (
         <main className={styles.container}>
-            {productList}
+            <div className={styles.productlist_container}>
+                {productList}
+            </div>
         </main>
     )
 }

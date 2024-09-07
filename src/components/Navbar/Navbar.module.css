@@ -1,0 +1,39 @@
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    height: 14rem;
+    padding-top: 3rem;
+}
+
+.navbar_left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navbar_right {
+    display: flex;
+    align-items: flex-end;
+}
+
+.logo {
+    max-height: 7rem;
+}
+
+.bars {
+    height: 1.3rem;
+    transition: transform .2s;
+    transition-timing-function: ease-in-out;
+}
+
+.bars:hover {
+    transform: scale(1.5);
+    color: rgb(50, 144, 50);
+}
+
