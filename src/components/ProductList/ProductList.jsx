@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import ProductCard from '../ProductCard/ProductCard'
+import ProductCard from '../../components/ProductCard/ProductCard'
 
 import * as dummyJSONService from '../../services/dummyJSONService'
 
@@ -21,6 +21,7 @@ function ProductList(){
     })
 
     if (!productList) <h2>Loading...</h2>
+
     return (
         <main className={styles.container}>
             {productList}
