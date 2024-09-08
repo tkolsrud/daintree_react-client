@@ -9,11 +9,14 @@ async function signup(user){
             body: JSON.stringify(user),
         })
         const json = await res.json()
+        
         if (json.err){
             throw new Error(json.err)
-        } else if (json.token) {
+        }
+        if (json.token) {
             tokenService.setToken(json.token)
         }
+        return json.profile
     } catch (err) {
         throw err
     }
@@ -35,11 +38,12 @@ async function login(credentials){
             body: JSON.stringify(credentials),
         })
         const json = await res.json()
-        if (json.token){
-            await tokenService.setToken(json.token)
-        }
+
         if (json.err) {
             throw new Error(json.err)
+        }
+        if (json.token){
+            tokenService.setToken(json.token)
         }
         return json.profile
     } catch (err) {

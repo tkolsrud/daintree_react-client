@@ -20,7 +20,7 @@ const LoginForm = ({ message, updateMessage, handleSignupOrLogin, setProfile }) 
         try {
             const apiResponse = await authService.login(formData)
             setProfile(apiResponse)
-            await handleSignupOrLogin()
+            handleSignupOrLogin()
             navigate('/')
         } catch (err) {
             updateMessage(err.message)

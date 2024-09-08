@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import SignupForm from '../../components/SignupForm/SignupForm'
 
-function Signup({ handleSignupOrLogin }){
+function Signup({ handleSignupOrLogin, setProfile }){
     const [message, setMessage] = useState([''])
 
     const updateMessage = (msg) => {
@@ -15,6 +15,7 @@ function Signup({ handleSignupOrLogin }){
                     message={message}
                     updateMessage={updateMessage}
                     handleSignupOrLogin={handleSignupOrLogin}
+                    setProfile={setProfile}
                 />
             </section>
         </main>

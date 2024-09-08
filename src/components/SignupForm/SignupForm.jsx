@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import * as authService from '../../services/authService'
 
-function SignupForm({ message, updateMessage, handleSignupOrLogin }){
+function SignupForm({ message, updateMessage, handleSignupOrLogin, setProfile }){
     const navigate = useNavigate()
     const [formData, setFormData] = useState({
         username:'',
@@ -19,7 +19,8 @@ function SignupForm({ message, updateMessage, handleSignupOrLogin }){
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await authService.signup(formData, photoData.photo)
+            const apiResponse = await authService.signup(formData)
+            setProfile(apiResponse)
             handleSignupOrLogin()
             navigate('/')
         } catch (err) {
