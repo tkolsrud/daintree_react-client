@@ -33,6 +33,7 @@ function Navbar(){
                 <Sidemenu categories={categories} show={show} handleClose={handleClose} />
             </section>
             <section className={styles.navbar_right}>
+                <p className={styles.login}><NavLink to='/profile'>Profile</NavLink></p>
                 <p className={styles.login}><NavLink to='/login'>Login</NavLink></p>
             </section>
         </div>

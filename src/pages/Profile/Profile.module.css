@@ -1,0 +1,21 @@
+.container {
+    width: 100%;
+}
+
+.user_info {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.list_area {
+    display: flex;
+}
+
+.cart {
+    width: 70%;
+}
+
+
+
+

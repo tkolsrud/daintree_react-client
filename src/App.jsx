@@ -30,13 +30,14 @@ function App() {
     authService.logout()
   }
 
-  useEffect(() =>{
-    const fetchProfile = async (profile) =>{
-      if(!profile._id) {
-        const userProfile = await profileService.getProfile()
-        setProfile(userProfile)
-      }
+  const fetchProfile = async (profile) =>{
+    if(!profile._id) {
+      const userProfile = await profileService.getProfile()
+      setProfile(userProfile)
     }
+  }
+  
+  useEffect(() =>{  
     fetchProfile(profile)
   }, [])
 
@@ -49,7 +50,7 @@ function App() {
         <Route path='/login' element={<Login handleSignupOrLogin={handleSignupOrLogin} setProfile={setProfile} />} />
         <Route path='/signup' element={<Signup handleSignupOrLogin={handleSignupOrLogin} setProfile={setProfile} />} />
         <Route path='/product-info' element={<ProductDetail setProfile={setProfile} />} />
-        <Route path='/profile' element={<Profile profile={profile} setProfile={setProfile} />} />
+        <Route path='/profile' element={<Profile profile={profile} setProfile={setProfile} fetchProfile={fetchProfile} />} />
         <Route path='/WishList/:wishListId' element={<WishList />} />
       </Routes>
     </>
