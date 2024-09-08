@@ -30,7 +30,7 @@ function Navbar(){
     return (
         <div className={styles.navbar}>
             <section className={styles.navbar_left}>
-                <NavLink to='/'><img src="../../../public/nature.png" alt="daintree logo" className={styles.logo} /></NavLink>
+                <NavLink to='/'><img src="./nature.png" alt="daintree logo" className={styles.logo} /></NavLink>
                 <FontAwesomeIcon icon={faBars} onClick={handleShow} className={styles.bars} />
                 <Sidemenu categoryList={categoryList} show={show} handleClose={handleClose} />
             </section>

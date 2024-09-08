@@ -1,6 +1,7 @@
 a {
     text-decoration: none;
     color: inherit;
+    font-weight: bold;
 }
 
 .navbar {
@@ -9,6 +10,8 @@ a {
     justify-content: space-between;
     height: 14rem;
     padding-top: 3rem;
+    padding-bottom: 2rem;
+    background-color: #fff2c8;
 }
 
 .navbar_left {
@@ -20,6 +23,7 @@ a {
 .navbar_right {
     display: flex;
     align-items: flex-end;
+    padding-bottom: 2remrem;
 }
 
 .logo {
@@ -34,6 +38,6 @@ a {
 
 .bars:hover {
     transform: scale(1.5);
-    color: rgb(50, 144, 50);
+    /* color: rgb(50, 144, 50); */
 }
 
