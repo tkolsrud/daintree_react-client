@@ -1,0 +1,21 @@
+.title {
+    font-weight: 600rem;
+    font-size: 2rem;
+}
+
+.category_name {
+    font-weight: 500;
+    font-size: 1.25rem;
+    transition: transform .2s;
+    padding-top: 1rem;
+    /* padding-left: 1rem;; */
+}
+
+.category_name:hover {
+    transform: scale(1.01);
+    color: rgb(56, 128, 26);
+    font-weight: 525;
+}
+
+
+
