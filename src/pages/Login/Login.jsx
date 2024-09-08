@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 // Components
 import LoginForm from '../../components/LoginForm/LoginForm'
 
-function Login({ handleSignupOrLogin }){
+function Login({ handleSignupOrLogin, setProfile }){
     const [message, setMessage] =useState([''])
 
     const updateMessage = (msg) => {
@@ -17,6 +17,7 @@ function Login({ handleSignupOrLogin }){
                     message={message}
                     updateMessage={updateMessage}
                     handleSignupOrLogin={handleSignupOrLogin}
+                    setProfile={setProfile}
                 />
             </section>
             <section>

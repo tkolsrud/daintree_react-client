@@ -21,8 +21,8 @@ function App() {
   const [user, setUser] = useState(authService.getUser())
   const [profile, setProfile] = useState({})
 
-  const handleSignupOrLogin = () => {
-    setUser(authService.getUser().user)
+  const handleSignupOrLogin = async () => {
+    setUser(authService.getUser())
   }
 
   const handleLogout = () => {

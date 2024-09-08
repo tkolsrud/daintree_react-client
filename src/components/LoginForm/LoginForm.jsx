@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import * as authService from '../../services/authService'
 
-const LoginForm = ({ message, updateMessage, handleSignupOrLogin }) => {
+const LoginForm = ({ message, updateMessage, handleSignupOrLogin, setProfile }) => {
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -18,7 +18,8 @@ const LoginForm = ({ message, updateMessage, handleSignupOrLogin }) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try {
-            await authService.login(formData)
+            const apiResponse = await authService.login(formData)
+            setProfile(apiResponse)
             await handleSignupOrLogin()
             navigate('/')
         } catch (err) {
