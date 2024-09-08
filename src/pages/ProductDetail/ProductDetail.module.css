@@ -1,0 +1,47 @@
+.container {
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container_bottom {
+    max-width: 60%;
+    margin-top: 3rem;
+}
+
+.container_bottom div {
+    padding: 1rem;
+}
+
+.image {
+    display: flex;
+    justify-content: center;
+}
+
+.image img {
+    max-width: 80%;
+}
+
+.container_top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    margin-top: 0.5rem;
+}
+h1 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.25rem;
+    font-weight: 400;
+}
+
+.price p {
+    font-weight: 525;
+    font-size: 1.8rem;
+}

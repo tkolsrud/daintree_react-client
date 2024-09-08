@@ -1,17 +1,16 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import Star from '../Star/Star'
 import styles from './ProductCard.module.css'
 import HalfStar from '../HalfStar/HalfStar'
 
 
 
-function ProductCard({ product, stars, setStars }){
+function ProductCard({ product }){
     const [starRating, setStarRating] = useState([])
     
     useEffect(()=>{
-        console.log(product.rating)
         makeIcons(product.rating)
-        console.log('starRating', starRating)
     }, [])
 
     const makeIcons = async (num) => {
@@ -19,18 +18,18 @@ function ProductCard({ product, stars, setStars }){
         for(let i=1; i < num; i++){
             starArr.push(<Star key={i}/>)
         }
-        console.log('pushIcons', starArr)
         await setStarRating(starArr)
-
     }
 
     return (
         <div className={styles.container}>
             <div>
-                <img className={styles.thumbnail} src={product.thumbnail} alt={product.title} />
+                <Link to='/product-info' state={{ product}}><img className={styles.thumbnail} src={product.thumbnail} alt={product.title} /></Link>
             </div>
             <div className={styles.product_title_container}>
+                <Link to='/product-info' state={{ product}}>    
                 <p className={styles.product_title}>{product.title}</p>
+                </Link>
             </div>
             <div className={styles.product_info}>
                 <ul>

@@ -36,7 +36,8 @@
 
 .product_title {
     font-size: 1.2rem;
-    color: red;
+    font-weight: 600;
+    transform: transition
 }
 
 .product_info {
@@ -46,6 +47,10 @@
 
 .product_info p {
     padding: 0.2em;
+}
+
+.product_title:hover {
+    color: rgb(56, 128, 26);
 }
 
 li {

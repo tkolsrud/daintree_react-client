@@ -6,9 +6,9 @@ import styles from './Sidemenu.module.css'
 function Sidemenu({ categories, show, handleClose }){
 
     const categoryList = categories.map((category, idx) => {
-        return <li onClick={handleClose} className={styles.category_name}key={idx}>
-            <NavLink to={`/dept/${category.slug}`}>{category.name}</NavLink>
-            </li>
+        return <NavLink to={`/dept/${category.slug}`} key={idx}>
+            <li onClick={handleClose} className={styles.category_name}>{category.name}</li>
+            </NavLink>
     })
 
     return (

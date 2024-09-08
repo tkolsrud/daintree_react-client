@@ -37,7 +37,7 @@ function App() {
         <Route path='/dept/:name' element={<Department />} />
         <Route path='/login' element={<Login handleSignupOrLogin={handleSignupOrLogin} />} />
         <Route path='/signup' element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
-        <Route path='/product-info/:productId' element={<ProductDetail />} />
+        <Route path='/product-info' element={<ProductDetail />} />
         <Route path='/profile' element={<Profile />} />
         <Route path='/WishList/:wishListId' element={<WishList />} />
       </Routes>
