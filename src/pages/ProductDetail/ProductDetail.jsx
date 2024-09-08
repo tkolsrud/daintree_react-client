@@ -23,6 +23,10 @@ function ProductDetail(){
         await setStarRating(starArr)
     }
 
+    // const addToCart = (product) => {
+
+    // }
+
     return (
         <main className={styles.container}>
             <div className={styles.container_top}>

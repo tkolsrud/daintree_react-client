@@ -36,7 +36,7 @@ function ProductCard({ product }){
                     {product.brand ? (
                         <li>{product.brand}</li>
                     ) : (
-                        <li>Daintree Fresh</li>
+                        <li>Daintree Basics</li>
                     )}
                     <li>${product.price}</li>
                     <li>{starRating}<HalfStar /> ({product.rating})

@@ -60,7 +60,7 @@ function SignupForm({ message, updateMessage, handleSignupOrLogin }){
                 />
             </div>
             <div>
-                <label htmlFor="password">Email</label>
+                <label htmlFor="password">Password</label>
                 <input 
                     type="password" 
                     autoComplete="off"

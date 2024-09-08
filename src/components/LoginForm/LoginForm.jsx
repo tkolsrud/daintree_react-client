@@ -19,7 +19,7 @@ const LoginForm = ({ message, updateMessage, handleSignupOrLogin }) => {
         e.preventDefault()
         try {
             await authService.login(formData)
-            handleSignupOrLogin()
+            await handleSignupOrLogin()
             navigate('/')
         } catch (err) {
             updateMessage(err.message)

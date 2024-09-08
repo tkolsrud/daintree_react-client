@@ -41,6 +41,7 @@ async function login(credentials){
         if (json.err) {
             throw new Error(json.err)
         }
+        return json.profile
     } catch (err) {
         throw err
     }
