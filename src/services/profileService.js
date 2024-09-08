@@ -21,4 +21,23 @@ async function getProfile(){
     }
 }
 
-export { getProfile }
+async function addToCart(product) {
+    try{
+        const res = await fetch(`${BASE_URL}/add-to-cart`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${tokenService.getToken()}`,
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify(product)
+        })
+        const json = await res.json()
+        console.log(json)
+        if (json.err) throw new Error(json.err)
+        else return json
+    } catch (err) {
+        throw err
+    }
+}
+
+export { getProfile, addToCart }

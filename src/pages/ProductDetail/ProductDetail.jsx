@@ -3,9 +3,11 @@ import { useLocation } from 'react-router-dom'
 import HalfStar from '../../components/HalfStar/HalfStar'
 import Star from '../../components/Star/Star'
 
+import * as profileService from '../../services/profileService'
+
 import styles from './ProductDetail.module.css'
 
-function ProductDetail(){
+function ProductDetail({ setProfile }){
     let { state } = useLocation()
     let product = state.product
 
@@ -23,9 +25,19 @@ function ProductDetail(){
         await setStarRating(starArr)
     }
 
-    // const addToCart = (product) => {
-
-    // }
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const productData = {
+            apiEndpoint: `https:dummyjson.com/products/${product.id}`,
+            title: product.title,
+            description: product.description,
+            brand: product.brand,
+            price: product.price,
+            tags: product.tags
+        }
+        if(!productData.brand) productData.brand = 'Daintree Basics'
+        setProfile(await profileService.addToCart(productData))
+    }
 
     return (
         <main className={styles.container}>
@@ -35,6 +47,9 @@ function ProductDetail(){
                 </div>
                 <div className={styles.title}>
                     <h1>{product.title}</h1>
+                </div>
+                <div className={styles.brand}>
+                    {!product.brand ? <p>Daintree Basics</p> : <p>{product.brand}</p>}
                 </div>
             </div>
             <div className={styles.container_bottom}>
@@ -48,7 +63,7 @@ function ProductDetail(){
                     <p>{starRating}<HalfStar /> ({product.rating})</p>
                  </div>
             </div>
-
+            <button onClick={handleSubmit}>Add to Cart</button>
         </main>
     )
 }
