@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react"
-
-
+import { Link, useNavigate } from 'react-router-dom' 
 
 import styles from './Profile.module.css'
 
@@ -15,12 +14,18 @@ function Profile({ profile, setProfile }){
         
     } else {
         const shoppingCart = profile.cart.map((product) => {
-            return <li key={product._id}>{product.title}</li>
+            return <Link to={`/product-info/${product.apiId}`} key={product._id}>
+                        <li>{product.title}</li>
+                    </Link>
         })
 
         const wishLists = profile.wishLists.map((list) => {
             return <li key={list._id}>{list.name}</li>
         })
+
+        async function fetchProduct(product){
+            await dummyJSONService.fetchOneProduct(product)
+        }
 
         return (
             <main className={styles.container}>
@@ -45,3 +50,4 @@ function Profile({ profile, setProfile }){
 }
 
 export default Profile
+

@@ -18,16 +18,16 @@ function ProductCard({ product }){
         for(let i=1; i < num; i++){
             starArr.push(<Star key={i}/>)
         }
-        await setStarRating(starArr)
+        setStarRating(starArr)
     }
 
     return (
         <div className={styles.container}>
             <div>
-                <Link to='/product-info' state={{ product}}><img className={styles.thumbnail} src={product.thumbnail} alt={product.title} /></Link>
+                <Link to={`/product-info/${product.id}`}><img className={styles.thumbnail} src={product.thumbnail} alt={product.title} /></Link>
             </div>
             <div className={styles.product_title_container}>
-                <Link to='/product-info' state={{ product}}>    
+                <Link to={`/product-info/${product.id}`} >    
                 <p className={styles.product_title}>{product.title}</p>
                 </Link>
             </div>

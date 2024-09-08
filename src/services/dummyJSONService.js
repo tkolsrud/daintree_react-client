@@ -6,6 +6,12 @@ async function fetchAllProducts(){
     return data.products
 }
 
+async function fetchOneProduct(productId){
+    const res = await fetch(`${BASE_URL}/${productId}`)
+    const data = res.json()
+    return data
+}
+
 async function fetchCategories(){
     const res = await fetch(`${BASE_URL}/categories`)
     const data = await res.json()
@@ -27,4 +33,5 @@ export {
     fetchAllProducts, 
     fetchCategories, 
     fetchProductsByCategory, 
+    fetchOneProduct
 }
