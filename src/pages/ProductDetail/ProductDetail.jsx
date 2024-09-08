@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import HalfStar from '../../components/HalfStar/HalfStar'
 import Star from '../../components/Star/Star'
 
@@ -10,9 +10,11 @@ import styles from './ProductDetail.module.css'
 
 function ProductDetail({ setProfile }){
     let { id } = useParams()
-
+   
     const [starRating, setStarRating] = useState([])
     const [product, setProduct] = useState({})
+
+    const navigate = useNavigate()
     
     useEffect(()=>{
         async function oragnizeState(id){
@@ -48,7 +50,8 @@ function ProductDetail({ setProfile }){
         }
 
         if(!productData.brand) productData.brand = 'Daintree Basics'
-        setProfile(await profileService.addToCart(productData))
+        await setProfile(await profileService.addToCart(productData))
+        navigate('/profile')
     }
 
     if(!product.images || !starRating.length){
