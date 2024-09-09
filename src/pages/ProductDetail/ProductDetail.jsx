@@ -8,11 +8,12 @@ import * as dummyJSONService from '../../services/dummyJSONService'
 
 import styles from './ProductDetail.module.css'
 
-function ProductDetail({ setProfile }){
+function ProductDetail({ profile, setProfile }){
     let { id } = useParams()
    
     const [starRating, setStarRating] = useState([])
     const [product, setProduct] = useState({})
+    const [selectOptions, setSelectOptions] = useState([])
 
     const navigate = useNavigate()
     
@@ -27,6 +28,7 @@ function ProductDetail({ setProfile }){
         const apiResponse = await dummyJSONService.fetchOneProduct(id)
         setProduct(apiResponse)
         makeIcons(apiResponse.rating)
+        makeOptions(profile)
     }
 
     const makeIcons = (num) => {
@@ -37,7 +39,23 @@ function ProductDetail({ setProfile }){
         setStarRating(starArr)
     }
 
-    const handleSubmit = async (e) => {
+    const makeOptions = (profile) => {
+        if(profile.wishLists[0]){
+            const options = profile.wishLists.map((list) => {
+                return <option value={list._id}>{list.name}</option>
+            })
+            setSelectOptions(options)
+        }
+    }
+
+    // if(profile.wishLists.length){
+    //     // const options = profile.wishLists.map((list) => {
+    //     //     return <option value={list._id}>{list.name}</option>
+    //     // })
+    //     setSelectOptions(options)
+    // }
+
+    const submitCart = async (e) => {
         e.preventDefault()
         const productData = {
             apiId: product.id,
@@ -54,7 +72,26 @@ function ProductDetail({ setProfile }){
         navigate('/profile')
     }
 
-    if(!product.images || !starRating.length){
+    
+
+    const submitToList = async (e) => {
+        e.preventDefault()
+        const id = e.target.value
+        const listProduct = {
+            apiId: product.id,
+            title: product.title,
+            description: product.description,
+            brand: product.brand,
+            price: product.price,
+            tags: product.tags,
+            thumbnail: product.thumbnail
+        }
+        await profileService.addToWishList(id, listProduct)
+    }
+    
+    
+
+    if(!product.images || !starRating.length ){
         return <h1>Loading...</h1>
     } else {
 
@@ -82,7 +119,12 @@ function ProductDetail({ setProfile }){
                     <p>{starRating}<HalfStar /> ({product.rating})</p>
                  </div>
             </div>
-            <button onClick={handleSubmit}>Add to Cart</button>
+            <button onClick={submitCart}>Add to Cart</button>
+            <select onChange={submitToList} name="wishLists" id="wishList-select">
+                <option value="">Add to wishlist</option>
+                {selectOptions}
+                <option value="new">Create New List</option>
+            </select>
         </main>
     )
 }

@@ -7,9 +7,14 @@ async function fetchAllProducts(){
 }
 
 async function fetchOneProduct(productId){
-    const res = await fetch(`${BASE_URL}/${productId}`)
-    const data = res.json()
-    return data
+    try {
+        const res = await fetch(`${BASE_URL}/${productId}`)
+        const data = res.json()
+        return data
+    } catch (err) {
+        throw err
+    }
+    
 }
 
 async function fetchCategories(){

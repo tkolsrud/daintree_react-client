@@ -1,7 +1,7 @@
 import * as tokenService from './tokenService'
 const BASE_URL = `${import.meta.env.VITE_BACK_END_SERVER_URL}/api/profiles`
 
-async function getProfile(){
+async function getProfile() {
     try {
         const res = await fetch(`${BASE_URL}/user-profile`, {
             method: 'GET',
@@ -40,4 +40,40 @@ async function addToCart(product) {
     }
 }
 
-export { getProfile, addToCart }
+async function createWishList(name, product) {
+    try {
+        const res = await fetch(`${BASE_URL}/create-wl`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${tokenService.getToken()}`,
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({ name, product })
+        })
+        const json = await res.json()
+        if(json.err) throw new Error(json.err)
+        else return json
+    } catch (err) {
+        throw err
+    }
+}
+
+async function addToWishList(id, product) {
+    try {
+        const res = await fetch(`${BASE_URL}/add-product-wl`, {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${tokenService.getToken()}`,
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({ id, product })
+        })
+        const json = await res.json()
+        if(json.err) throw new Error(json.err)
+        else return json
+    } catch (err) {
+        throw err
+    }
+}
+
+export { getProfile, addToCart, createWishList, addToWishList }
