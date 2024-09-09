@@ -40,7 +40,7 @@ async function addToCart(product) {
     }
 }
 
-async function createWishList(name, product) {
+async function createWishList(name, products) {
     try {
         const res = await fetch(`${BASE_URL}/create-wl`, {
             method: 'POST',
@@ -48,7 +48,7 @@ async function createWishList(name, product) {
                 'Authorization': `Bearer ${tokenService.getToken()}`,
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify({ name, product })
+            body: JSON.stringify({ name: name, products: products})
         })
         const json = await res.json()
         if(json.err) throw new Error(json.err)

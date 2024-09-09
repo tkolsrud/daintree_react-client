@@ -25,7 +25,6 @@ async function fetchCategories(){
 
 async function fetchProductsByCategory(name){
     try {
-        console.log('name', name)
         const res = await fetch(`${BASE_URL}/category/${name}`)
         const data = await res.json()
         return data.products
