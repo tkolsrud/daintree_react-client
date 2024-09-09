@@ -1,14 +1,11 @@
-import { useState, useEffect } from "react"
-import { Link, useNavigate } from 'react-router-dom' 
 
+import { Link } from 'react-router-dom'
 import * as profileService from '../../services/profileService'
 
 import styles from './Profile.module.css'
 
 
 function Profile({ profile, setProfile }){
-    const [cart, setCart] = useState([])
-    const [lists, setLists] = useState([])
 
     if(!profile.cart){
         return <h1>Loading...</h1>
@@ -21,7 +18,6 @@ function Profile({ profile, setProfile }){
             console.log(e.target.id.value)
             const updatedProfile = await profileService.removeFromCart(e.target.id.value)
             setProfile(updatedProfile)
-
         }
 
         const shoppingCart = profile.cart.map((product, i) => {
@@ -44,8 +40,10 @@ function Profile({ profile, setProfile }){
                     
         })
 
-        const wishLists = profile.wishLists.map((list) => {
-            return <li key={list._id}>{list.name}</li>
+        const wishLists = profile.wishLists.map((list, i) => {
+            return <Link to='/wish-list' state={{ list }} key={i}>
+            <li key={list._id}>{list.name}</li>
+            </Link>
         })
 
         async function fetchProduct(product){
