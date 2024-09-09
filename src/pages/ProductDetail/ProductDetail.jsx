@@ -70,6 +70,7 @@ function ProductDetail({ profile, setProfile }){
 
     const submitToList = async (e) => {
         e.preventDefault()
+        if(e.target.value === "new") return handleShow()
         console.log("submit")
         const id = e.target.value
         const listProduct = {
@@ -102,6 +103,10 @@ function ProductDetail({ profile, setProfile }){
         const updatedProfile = await profileService.createWishList(name, listProduct)
         setProfile(updatedProfile)
         navigate('/profile')
+    }
+
+    const launchModal = () => {
+        setShow(true)
     }
 
     const handleClose = () => setShow(false)
@@ -145,7 +150,7 @@ function ProductDetail({ profile, setProfile }){
                         <option value="new">Create New List</option>
                     </select>
                 </form>
-                <button onClick={() => setShow(true)}>launch modal</button>
+                {/* <button onClick={() => setShow(true)}>launch modal</button> */}
                 <NewListForm 
                     show={show}
                     setShow={setShow}
