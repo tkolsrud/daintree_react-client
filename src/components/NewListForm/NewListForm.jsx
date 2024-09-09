@@ -6,9 +6,7 @@ function NewListForm({ show, handleClose, setShow, submitNewList }) {
     return (
         
             <Modal show={show} onHide={handleClose} size='lg' centered>
-                <Modal.Header closeButton>
-                    New List Form
-                </Modal.Header>
+                <Modal.Header closeButton></Modal.Header>
                 <section>
                     <form onSubmit={submitNewList}>
                         <label htmlFor="name-input">List Name</label>

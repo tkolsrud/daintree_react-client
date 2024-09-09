@@ -40,6 +40,23 @@ async function addToCart(product) {
     }
 }
 
+async function removeFromCart(id) {
+    try {
+        const res = await fetch(`${BASE_URL}/remove-from-cart/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${tokenService.getToken()}`
+            },
+        })
+        console.log(res)
+        const json = await res.json()
+        if (json.err) throw new Error(json.err)
+        else return json
+    } catch (err) {
+        throw err
+    }
+}
+
 async function createWishList(name, products) {
     try {
         const res = await fetch(`${BASE_URL}/create-wl`, {
@@ -76,4 +93,4 @@ async function addToWishList(id, product) {
     }
 }
 
-export { getProfile, addToCart, createWishList, addToWishList }
+export { getProfile, addToCart, createWishList, addToWishList, removeFromCart }
