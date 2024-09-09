@@ -70,6 +70,7 @@ function ProductDetail({ profile, setProfile }){
 
     const submitToList = async (e) => {
         e.preventDefault()
+        console.log("submit")
         const id = e.target.value
         const listProduct = {
             apiId: product.id,
@@ -80,7 +81,9 @@ function ProductDetail({ profile, setProfile }){
             tags: product.tags,
             thumbnail: product.thumbnail
         }
-        await profileService.addToWishList(id, listProduct)
+        const updatedProfile = await profileService.addToWishList(id, listProduct)
+        setProfile(updatedProfile)
+        navigate('/profile')
     }
     
     const submitNewList = async (e) => {
@@ -96,7 +99,9 @@ function ProductDetail({ profile, setProfile }){
             thumbnail: product.thumbnail
         }]
         console.log(name, listProduct)
-        await profileService.createWishList(name, listProduct)
+        const updatedProfile = await profileService.createWishList(name, listProduct)
+        setProfile(updatedProfile)
+        navigate('/profile')
     }
 
     const handleClose = () => setShow(false)
@@ -133,11 +138,13 @@ function ProductDetail({ profile, setProfile }){
                     </div>
                 </div>
                 <button onClick={submitCart}>Add to Cart</button>
-                <select onChange={submitToList} name="wishLists" id="wishList-select">
-                    <option value="">Add to wishlist</option>
-                    {selectOptions}
-                    <option value="new">Create New List</option>
-                </select>
+                <form onChange={submitToList}>
+                    <select name="wishLists" id="wishList-select">
+                        <option value="">Add to wishlist</option>
+                        {selectOptions}
+                        <option value="new">Create New List</option>
+                    </select>
+                </form>
                 <button onClick={() => setShow(true)}>launch modal</button>
                 <NewListForm 
                     show={show}
