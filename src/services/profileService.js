@@ -93,4 +93,46 @@ async function addToWishList(id, product) {
     }
 }
 
-export { getProfile, addToCart, createWishList, addToWishList, removeFromCart }
+async function removeFromList(listId, prodId) {
+    try {
+        const res = await fetch(`${BASE_URL}/list/${listId}/remove-product-wl/${prodId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${tokenService.getToken()}`
+            },
+        })
+        const json = await res.json()
+        if (json.err) throw new Error(json.err)
+        else return json
+    } catch (err) {
+        throw err
+    }
+}
+
+async function deleteWishList(id) {
+    try {
+        const res = await fetch(`${BASE_URL}/delete-wl/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${tokenService.getToken()}`
+            },
+        })
+        console.log(res)
+        const json = await res.json()
+        if (json.err) throw new Error(json.err)
+        else return json
+    } catch (err) {
+        throw err
+    }
+}
+
+
+export { 
+    getProfile, 
+    addToCart, 
+    createWishList, 
+    addToWishList, 
+    removeFromCart, 
+    deleteWishList,
+    removeFromList 
+}

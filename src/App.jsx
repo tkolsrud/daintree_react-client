@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
+export const ProfileContext = createContext()
 
 // Components
 import Login from './pages/Login/Login'
@@ -43,16 +44,18 @@ function App() {
 
   return (
     <>
+    <ProfileContext.Provider value={{ profile, setProfile }}>
     <Navbar />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/dept/:name' element={<Department />} />
-        <Route path='/login' element={<Login handleSignupOrLogin={handleSignupOrLogin} setProfile={setProfile} />} />
-        <Route path='/signup' element={<Signup handleSignupOrLogin={handleSignupOrLogin} setProfile={setProfile} />} />
-        <Route path='/product-info/:id' element={<ProductDetail profile={profile} setProfile={setProfile} />} />
-        <Route path='/profile' element={<Profile profile={profile} setProfile={setProfile} fetchProfile={fetchProfile} />} />
-        <Route path='/wish-list' element={<WishList profile={profile} />} />
+        <Route path='/login' element={<Login handleSignupOrLogin={handleSignupOrLogin} />} />
+        <Route path='/signup' element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
+        <Route path='/product-info/:id' element={<ProductDetail />} />
+        <Route path='/profile' element={<Profile fetchProfile={fetchProfile} />} />
+        <Route path='/wish-list' element={<WishList /> } />
       </Routes>
+    </ProfileContext.Provider>
     </>
   )
 }

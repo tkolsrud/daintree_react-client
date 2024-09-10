@@ -1,19 +1,22 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import NewListForm from '../../components/NewListForm/NewListForm'
 import HalfStar from '../../components/HalfStar/HalfStar'
 import Star from '../../components/Star/Star'
+import { ProfileContext } from '../../App'
 
 import * as profileService from '../../services/profileService'
 import * as dummyJSONService from '../../services/dummyJSONService'
 
 import styles from './ProductDetail.module.css'
 
-function ProductDetail({ profile, setProfile }){
+function ProductDetail(){
     const [starRating, setStarRating] = useState([])
     const [product, setProduct] = useState({})
     const [selectOptions, setSelectOptions] = useState([])
     const [show, setShow] = useState(false)
+
+    const { profile, setProfile } = useContext(ProfileContext)
 
     let { id } = useParams()
     const navigate = useNavigate()
@@ -43,7 +46,7 @@ function ProductDetail({ profile, setProfile }){
     const makeOptions = (profile) => {
         if(profile.wishLists[0]){
             const options = profile.wishLists.map((list) => {
-                return <option value={list._id}>{list.name}</option>
+                return <option value={list._id} key={list._id}>{list.name}</option>
             })
             setSelectOptions(options)
         }
@@ -82,6 +85,7 @@ function ProductDetail({ profile, setProfile }){
             tags: product.tags,
             thumbnail: product.thumbnail
         }
+        if(!listProduct.brand) listProduct.brand = 'Daintree Basics'
         const updatedProfile = await profileService.addToWishList(id, listProduct)
         setProfile(updatedProfile)
         navigate('/profile')
@@ -103,10 +107,6 @@ function ProductDetail({ profile, setProfile }){
         const updatedProfile = await profileService.createWishList(name, listProduct)
         setProfile(updatedProfile)
         navigate('/profile')
-    }
-
-    const launchModal = () => {
-        setShow(true)
     }
 
     const handleClose = () => setShow(false)
@@ -150,7 +150,6 @@ function ProductDetail({ profile, setProfile }){
                         <option value="new">Create New List</option>
                     </select>
                 </form>
-                {/* <button onClick={() => setShow(true)}>launch modal</button> */}
                 <NewListForm 
                     show={show}
                     setShow={setShow}

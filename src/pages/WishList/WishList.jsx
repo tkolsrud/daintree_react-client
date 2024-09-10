@@ -1,37 +1,41 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext, Profiler } from 'react'
 import { useLocation } from 'react-router-dom'
 import WishListItem from '../../components/WishListItem/WishListItem'
-
+import { ProfileContext } from '../../App'
 import * as profileService from '../../services/profileService'
 
-function WishList({ setProfile }){
+function WishList(){
     const [listData, setListData] = useState([])
     let { state } = useLocation()
+    const { profile, setProfile } = useContext(ProfileContext)
 
     useEffect(() => {
-        setListData(state.list.products)
+        const makeList = async () => {
+            setListData(profile.wishLists[state.index])
+        }
+        makeList()
     }, [listData])
 
-    if(listData) {
-        return(
+    if(!listData.products) {
+        {console.log('loading')}
+            return <h1>Loading</h1>
+    }
+
+    return(
             <>
-            <h1>{state.list.name}</h1>
+            <h1>{listData.name}</h1>
             <main>
                 <div>
                     <ul>
-                        {listData.map((product) => {
-                            return <WishListItem product={product} />
+                        {listData.products.map((product) => {
+                            return <WishListItem index={state.index} setListData={setListData} setProfile={setProfile} product={product} id={listData._id} key={product._id} />
                         })}
                     </ul>
                 </div>
             </main>
             </>
-
         )
-    } else {
-        {console.log('loading')}
-            return <h1>Loading</h1>
     }
-}
+
 
 export default WishList

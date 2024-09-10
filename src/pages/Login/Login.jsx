@@ -1,10 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom' 
+import { ProfileContext } from '../../App'
 // Components
 import LoginForm from '../../components/LoginForm/LoginForm'
+import Profile from '../Profile/Profile'
 
-function Login({ handleSignupOrLogin, setProfile }){
+function Login({ handleSignupOrLogin }){
     const [message, setMessage] =useState([''])
+
+    const { setProfile } = useContext(ProfileContext)
 
     const updateMessage = (msg) => {
         setMessage(msg)

@@ -1,8 +1,12 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import SignupForm from '../../components/SignupForm/SignupForm'
+import { ProfileContext } from '../../App'
 
-function Signup({ handleSignupOrLogin, setProfile }){
+
+function Signup({ handleSignupOrLogin }){
     const [message, setMessage] = useState([''])
+
+    const { setProfile } = useContext(ProfileContext)
 
     const updateMessage = (msg) => {
         setMessage(msg)
