@@ -5,6 +5,7 @@ import HalfStar from '../../components/HalfStar/HalfStar'
 import Star from '../../components/Star/Star'
 import CartModal from '../../components/CartModal/CartModal'
 import ListModal from '../../components/ListModal/ListModal'
+import LoginModal from '../../components/LoginModal/LoginModal'
 import { ProfileContext } from '../../App'
 
 import * as profileService from '../../services/profileService'
@@ -19,8 +20,10 @@ function ProductDetail(){
     const [showNewListForm, setShowNewListForm] = useState(false)
     const [showCartModal, setShowCartModal] = useState(false)
     const [showListModal, setShowListModal] = useState(false)
+    const [showLoginModal, setShowLoginModal] = useState(false)
 
     const handleShowListForm = () => setShowNewListForm(true)
+    const handleShowLoginModal = () => setShowLoginModal(true)
 
     const { profile, setProfile } = useContext(ProfileContext)
 
@@ -38,7 +41,7 @@ function ProductDetail(){
         const apiResponse = await dummyJSONService.fetchOneProduct(id)
         setProduct(apiResponse)
         makeIcons(apiResponse.rating)
-        makeOptions(profile)
+        if(profile) makeOptions(profile)
     }
 
     const makeIcons = (num) => {
@@ -50,7 +53,7 @@ function ProductDetail(){
     }
 
     const makeOptions = (profile) => {
-        if(profile.wishLists[0]){
+        if(profile.wishLists){
             const options = profile.wishLists.map((list) => {
                 return <option value={list._id} key={list._id}>{list.name}</option>
             })
@@ -60,6 +63,7 @@ function ProductDetail(){
 
     const submitCart = async (e) => {
         e.preventDefault()
+        if(!profile._id) return handleShowLoginModal()
         const productData = {
             apiId: product.id,
             title: product.title,
@@ -148,7 +152,13 @@ function ProductDetail(){
                     </div>
                 </div>
                 <button onClick={submitCart}>Add to Cart</button>
-                <form onChange={submitToList}>
+                <LoginModal 
+                    show={showLoginModal} 
+                    setShow={setShowLoginModal}
+                />
+                {profile._id ? (
+                    <>
+                    <form onChange={submitToList}>
                     <select name="wishLists" id="wishList-select">
                         <option value="">Add to wishlist</option>
                         {selectOptions}
@@ -168,8 +178,10 @@ function ProductDetail(){
                     show={showListModal}
                     setShow={setShowListModal}
                 />
+                </>) : (
+                    null
+                )}
             </main>
-        )
-    }
-}
+
+)}}
 export default ProductDetail

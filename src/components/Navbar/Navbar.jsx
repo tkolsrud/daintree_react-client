@@ -10,7 +10,7 @@ import * as dummyJSONService from '../../services/dummyJSONService'
 import daintreeLogo from './nature.png'
 import styles from './Navbar.module.css'
 
-function Navbar(){
+function Navbar({ user, handleLogout }){
     const [categories, setCategories] = useState([])
     const [show, setShow] = useState(false)
 
@@ -21,6 +21,7 @@ function Navbar(){
         }
         fetchCategories()
     }, [])
+
 
     const handleClose = () => setShow(false)
     const handleShow = () => setShow(true)
@@ -33,8 +34,15 @@ function Navbar(){
                 <Sidemenu categories={categories} show={show} handleClose={handleClose} />
             </section>
             <section className={styles.navbar_right}>
+                {!user ? (
+                    <p className={styles.login}><NavLink to='/login'>Login</NavLink></p>
+                ) : (
+                    <>
+                <p className={styles.login} onClick={handleLogout}><NavLink to='/'>Logout</NavLink></p>
                 <p className={styles.login}><NavLink to='/profile'>Profile</NavLink></p>
-                <p className={styles.login}><NavLink to='/login'>Login</NavLink></p>
+                </>
+                )}
+                
             </section>
         </div>
     )
