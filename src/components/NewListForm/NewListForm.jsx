@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal'
 
-function NewListForm({ show, handleClose, setShow, submitNewList }) {
+function NewListForm({ show, setShow, submitNewList }) {
+    const handleClose = () => setShow(false)
 
     return (
         
@@ -20,7 +21,7 @@ function NewListForm({ show, handleClose, setShow, submitNewList }) {
                     </form>
                 </section>
 
-                <button onClick={handleClose}>close</button>
+                <button onClick={handleClose}>Cancel</button>
             </Modal>
     )
 }

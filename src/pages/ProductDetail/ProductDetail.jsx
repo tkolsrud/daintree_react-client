@@ -3,6 +3,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 import NewListForm from '../../components/NewListForm/NewListForm'
 import HalfStar from '../../components/HalfStar/HalfStar'
 import Star from '../../components/Star/Star'
+import CartModal from '../../components/CartModal/CartModal'
+import ListModal from '../../components/ListModal/ListModal'
 import { ProfileContext } from '../../App'
 
 import * as profileService from '../../services/profileService'
@@ -14,7 +16,11 @@ function ProductDetail(){
     const [starRating, setStarRating] = useState([])
     const [product, setProduct] = useState({})
     const [selectOptions, setSelectOptions] = useState([])
-    const [show, setShow] = useState(false)
+    const [showNewListForm, setShowNewListForm] = useState(false)
+    const [showCartModal, setShowCartModal] = useState(false)
+    const [showListModal, setShowListModal] = useState(false)
+
+    const handleShowListForm = () => setShowNewListForm(true)
 
     const { profile, setProfile } = useContext(ProfileContext)
 
@@ -66,14 +72,15 @@ function ProductDetail(){
 
         if(!productData.brand) productData.brand = 'Daintree Basics'
         await setProfile(await profileService.addToCart(productData))
-        navigate('/profile')
+        // navigate('/profile')
+        setShowCartModal(true)
     }
 
     
 
     const submitToList = async (e) => {
         e.preventDefault()
-        if(e.target.value === "new") return handleShow()
+        if(e.target.value === "new") return handleShowListForm()
         console.log("submit")
         const id = e.target.value
         const listProduct = {
@@ -88,7 +95,7 @@ function ProductDetail(){
         if(!listProduct.brand) listProduct.brand = 'Daintree Basics'
         const updatedProfile = await profileService.addToWishList(id, listProduct)
         setProfile(updatedProfile)
-        navigate('/profile')
+        setShowListModal(true)
     }
     
     const submitNewList = async (e) => {
@@ -106,11 +113,9 @@ function ProductDetail(){
         console.log(name, listProduct)
         const updatedProfile = await profileService.createWishList(name, listProduct)
         setProfile(updatedProfile)
-        navigate('/profile')
+        setShowNewListForm(false)
+        setShowListModal(true)
     }
-
-    const handleClose = () => setShow(false)
-    const handleShow = () => setShow(true)
 
     if(!product.images || !starRating.length ){
 
@@ -151,10 +156,17 @@ function ProductDetail(){
                     </select>
                 </form>
                 <NewListForm 
-                    show={show}
-                    setShow={setShow}
-                    handleClose={handleClose}
+                    show={showNewListForm}
+                    setShow={setShowNewListForm}
                     submitNewList={submitNewList}
+                />
+                <CartModal
+                    show={showCartModal}
+                    setShow={setShowCartModal}
+                />
+                <ListModal
+                    show={showListModal}
+                    setShow={setShowListModal}
                 />
             </main>
         )
