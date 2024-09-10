@@ -45,7 +45,7 @@ function App() {
 
   return (
     <>
-    <ProfileContext.Provider value={{ profile, setProfile, handleSignupOrLogin }}>
+    <ProfileContext.Provider value={{ profile, setProfile, setUser,handleSignupOrLogin }}>
     <Navbar user={user} handleLogout={handleLogout}/>
       <Routes>
         <Route path='/' element={<Home />} />

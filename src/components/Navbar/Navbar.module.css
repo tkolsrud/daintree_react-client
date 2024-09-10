@@ -6,6 +6,8 @@
     padding-top: 3rem;
     padding-bottom: 2rem;
     background-color: snow;
+    padding-left: 1em;
+    padding-right: 1em;
 }
 
 .navbar_left {
@@ -37,4 +39,5 @@
 
 .login {
     font-weight: bold;
+    margin-left: 1em;;
 }

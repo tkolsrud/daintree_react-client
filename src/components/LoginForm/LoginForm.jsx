@@ -18,7 +18,6 @@ const LoginForm = ({ message, updateMessage, handleSignupOrLogin, setProfile }) 
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log('submitted')
         try {
             const apiResponse = await authService.login(formData)
             setProfile(apiResponse)

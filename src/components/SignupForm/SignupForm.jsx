@@ -21,8 +21,8 @@ function SignupForm({ message, updateMessage, handleSignupOrLogin, setProfile })
         e.preventDefault()
         try {
             const apiResponse = await authService.signup(formData)
-            setProfile(apiResponse)
             handleSignupOrLogin()
+            setProfile(apiResponse)
             navigate('/')
         } catch (err) {
             updateMessage(err.message)
