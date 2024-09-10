@@ -2,27 +2,29 @@ import { useState, useContext } from 'react'
 import SignupForm from '../../components/SignupForm/SignupForm'
 import { ProfileContext } from '../../App'
 
-
-function Signup({ handleSignupOrLogin }){
+import styles from './Signup.module.css'
+function Signup(){
     const [message, setMessage] = useState([''])
 
-    const { setProfile } = useContext(ProfileContext)
+    const { setProfile, handleSignupOrLogin } = useContext(ProfileContext)
 
     const updateMessage = (msg) => {
         setMessage(msg)
     }
 
     return (
-        <main>
-            <section>
-                <SignupForm
-                    message={message}
-                    updateMessage={updateMessage}
-                    handleSignupOrLogin={handleSignupOrLogin}
-                    setProfile={setProfile}
-                />
-            </section>
-        </main>
+        <div className={styles.container}>
+            <main>
+                <section className={styles.top}>
+                    <SignupForm
+                        message={message}
+                        updateMessage={updateMessage}
+                        handleSignupOrLogin={handleSignupOrLogin}
+                        setProfile={setProfile}
+                    />
+                </section>
+            </main>
+        </div>
     )
 }
 

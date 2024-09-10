@@ -8,7 +8,7 @@ function ListModal({ show, setShow }){
         <Modal show={show} onHide={handleClose} size='lg' centered>
             <Modal.Header closeButton></Modal.Header>
             <div className={styles.container}>
-                <h1>Added to List!</h1>
+                <p>Added to List!</p>
             </div>
         </Modal>
     )

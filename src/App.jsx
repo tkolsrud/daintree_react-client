@@ -28,6 +28,7 @@ function App() {
 
   const handleLogout = () => {
     setUser(null)
+    setProfile({})
     authService.logout()
   }
 
@@ -44,13 +45,13 @@ function App() {
 
   return (
     <>
-    <ProfileContext.Provider value={{ profile, setProfile }}>
+    <ProfileContext.Provider value={{ profile, setProfile, handleSignupOrLogin }}>
     <Navbar user={user} handleLogout={handleLogout}/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/dept/:name' element={<Department />} />
-        <Route path='/login' element={<Login handleSignupOrLogin={handleSignupOrLogin} />} />
-        <Route path='/signup' element={<Signup handleSignupOrLogin={handleSignupOrLogin} />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
         <Route path='/product-info/:id' element={<ProductDetail />} />
         <Route path='/profile' element={<Profile fetchProfile={fetchProfile} />} />
         <Route path='/wish-list' element={<WishList /> } />

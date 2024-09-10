@@ -1,14 +1,15 @@
 .container {
-    width: 100%;
+    width: 70%;
     margin: none;
     display: flex;
     justify-content: center;
+    margin-left: 15%;
 }
 
 .productlist_container {
     display: flex;
     flex-wrap: wrap;
-    width: 100%;
+    width: 64em;
     background-color: rgb(255, 255, 255);
     align-self: center;
 }

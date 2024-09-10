@@ -1,0 +1,25 @@
+.container {
+    height: 15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container div {
+    padding: 1rem;
+}
+
+.link {
+    color: green;
+    font-weight: 600;
+}
+
+.login p {
+    font-size: 1.75rem;
+}
+
+.signup p {
+    font-size: 1rem;
+}
+

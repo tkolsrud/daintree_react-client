@@ -1,22 +1,23 @@
 import { useState, useContext } from 'react'
 import { Link } from 'react-router-dom' 
 import { ProfileContext } from '../../App'
-// Components
 import LoginForm from '../../components/LoginForm/LoginForm'
-import Profile from '../Profile/Profile'
 
-function Login({ handleSignupOrLogin }){
+import styles from './Login.module.css'
+
+function Login(){
     const [message, setMessage] =useState([''])
 
-    const { setProfile } = useContext(ProfileContext)
+    const { setProfile, handleSignupOrLogin } = useContext(ProfileContext)
 
     const updateMessage = (msg) => {
         setMessage(msg)
     }
 
     return (
+        <div className={styles.container}>
         <main>
-            <section>
+            <section className={styles.top}>
                 <LoginForm
                     message={message}
                     updateMessage={updateMessage}
@@ -24,10 +25,11 @@ function Login({ handleSignupOrLogin }){
                     setProfile={setProfile}
                 />
             </section>
-            <section>
-                <p>New user? <Link to="/signup">Sign up here!</Link></p>
+            <section className={styles.bottom}>
+                <p>New user? Sign up<Link className={styles.link} to="/signup"> here!</Link></p>
             </section>
         </main>
+        </div>
     )
 }
 
