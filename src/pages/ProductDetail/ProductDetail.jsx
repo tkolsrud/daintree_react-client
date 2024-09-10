@@ -128,7 +128,8 @@ function ProductDetail(){
     } else {
 
         return (
-            <main className={styles.container}>
+            <div className={styles.container}>
+            <main>
                 <div className={styles.container_top}>
                     <div className={styles.image}>
                         <img src={product.images[0]} alt={product.title} />
@@ -150,8 +151,8 @@ function ProductDetail(){
                     <div className={styles.rating}>
                         <p>{starRating}<HalfStar /> ({product.rating})</p>
                     </div>
-                </div>
                 <button onClick={submitCart}>Add to Cart</button>
+                </div>
                 <LoginModal 
                     show={showLoginModal} 
                     setShow={setShowLoginModal}
@@ -182,6 +183,6 @@ function ProductDetail(){
                     null
                 )}
             </main>
-
+            </div>
 )}}
 export default ProductDetail

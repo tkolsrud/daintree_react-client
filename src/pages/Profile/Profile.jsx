@@ -24,10 +24,9 @@ function Profile(){
                 return (
                     <li key={i}>
                         <Link to={`/product-info/${product.apiId}`} >
-                                    
-                                        <div className={styles.product_title}>
-                                            {product.title}
-                                        </div>
+                            <div className={styles.product_title}>
+                                {product.title}
+                            </div>
                         </Link>        
                         <div>
                             <form action="delete" onSubmit={handleRemove} >

@@ -5,7 +5,7 @@ import styles from './CartModal.module.css'
 function CartModal({ show, setShow }){
     const handleClose = () => setShow(false)
     return (
-        <Modal show={show} onHide={handleClose} size='lg' centered>
+        <Modal show={show} onHide={handleClose} centered>
             <Modal.Header closeButton></Modal.Header>
             <div className={styles.container}>
                 <p>Added to Cart!</p>

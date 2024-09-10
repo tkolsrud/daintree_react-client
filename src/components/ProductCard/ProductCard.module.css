@@ -2,6 +2,7 @@
     outline: 1px solid rgb(253, 248, 248);
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
     height: 20em;
     width: 12em;
@@ -35,11 +36,13 @@
 .product_title {
     font-size: 1.2rem;
     font-weight: 600;
-    transform: transition
+    transform: transition;
+    margin-left: 1em;
 }
 
 .product_info {
-    margin-top: 1rem;
+    margin-top: 1em;
+    margin-left: 1em;
     width: 100%;
 }
 

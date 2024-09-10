@@ -20,7 +20,6 @@ function Department(){
 
     return (
         <>
-            <h1>{name}</h1>
             <ProductList products={products} />
         </>
     )

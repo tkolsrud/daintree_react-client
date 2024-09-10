@@ -1,5 +1,5 @@
 .container {
-    height: 15rem;
+    height: 10rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -10,4 +10,5 @@
 .container p {
     font-size: 1.75rem;
     font-weight: 525;
+    margin-left: 5em;
 }
